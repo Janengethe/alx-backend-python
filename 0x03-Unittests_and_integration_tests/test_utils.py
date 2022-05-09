@@ -3,9 +3,8 @@
 Module test_utils
 """
 import unittest
-from unittest import mock
-
-from requests import patch
+from unittest.mock import Mock
+from unittest.mock import patch
 from utils import access_nested_map, get_json
 from parameterized import parameterized
 
@@ -38,7 +37,7 @@ class TestGetJson(unittest.TestCase):
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False}),
         ])
-    @patch("requests.get")
+    @patch("utils.requests")
     def test_get_json(self, test_url, test_payload, mock_requests_get):
         """Tests with mock"""
         mock_requests_get.json.return_value = test_payload
